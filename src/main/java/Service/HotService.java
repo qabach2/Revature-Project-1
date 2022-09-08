@@ -41,7 +41,7 @@ public class HotService {
     public HotDrinks updateHotDrinksById(HotDrinks hotDrinks){
         return hr.updateHotDrinksById(hotDrinks);
     }
-    public void addHotCoffee(HotDrinks drinks) {
+    public void addHotDrinks(HotDrinks drinks) {
         hr.addHotDrinks(drinks);
     }
     }
