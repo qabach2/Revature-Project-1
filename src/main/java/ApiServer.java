@@ -5,6 +5,7 @@ import Service.HotService;
 import Service.IcedService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
+import io.javalin.core.JavalinConfig;
 
 import java.sql.SQLException;
 
@@ -15,22 +16,23 @@ public class ApiServer {
         HotService hs = new HotService();
         IcedService is = new IcedService();
 
-        Javalin app = Javalin.create().start(8080);
+        Javalin app = Javalin.create(JavalinConfig::enableCorsForAllOrigins).start(9000);
 
-        app.get("/HotDrinks/", ctx -> {ctx.result(hs.getAllHotDrinks().toString());});
-}}
+        app.get("/allHotDrinks/", ctx -> {
+            ctx.json(hs.getAllHotDrinks());
+        });
 
-//        app.get("/HotDrinks/", ctx ->
-//        {
-//            ctx.json(is.getAllIcedDrinksById(Integer.parseInt(ctx.pathParam("id_number"))));
-//        });
-//        app.get("HotDrinks/Drinkid/{id}", ctx -> {
-//            ctx.json(hs.getAllHotDrinks()ByID(Integer.parseInt(ctx.pathParam("id"))));
-//        });
+        app.get("/allIcedDrinks/", ctx -> {
+            ctx.json(is.getAllIcedDrinks());
+        });
+        app.get("/allIcedDrinks/", ctx -> {
+            ctx.json(is.getAllIcedDrinks());
+        });
+
 //        ObjectMapper mapper = new ObjectMapper();
-//        HotDrinks requestHotDrinks  = mapper.readValue(ctx.body(), HotDrinks.class);
-//        hs.addHotDrinks(requestHotDrinks.getDescription(), requestHotDrinks.getHotDrinksByID());
-
+//       HotDrinks requestHotDrinks  = mapper.readValue(ctx.body(), HotDrinks.class);
+//       hs.addHotDrinks(requestHotDrinks.getDescription(), requestHotDrinks.getHotDrinksByID());
+    }}
 
 
 
