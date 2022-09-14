@@ -21,7 +21,7 @@ public class Main {
         HotService hotService = new HotService();
         IcedService icedService = new IcedService();
         while (HaveDrinks) {
-            System.out.println("SELECT ONE: ( all drinks,     get all drinks by id ,    add drink ,    remove drink ,     update drink,    exit )");
+            System.out.println("SELECT ONE: ( all drinks,     get all drinks by id ,    add order,    remove drink ,     update drink,    exit )");
             Scanner ab = new Scanner(System.in);
             String userInput = ab.nextLine();
 //  TO GET ALL COFFES FROM DATA BASE
@@ -49,25 +49,25 @@ public class Main {
                 }
 
             }
-//  TO ADD COFFEE TO LIST
-            else if (userInput.equals("add coffee")) {
-                System.out.println("hot drinks, drinks");
+//  =================TO ADD Order======================
+            else if (userInput.equals("add order")) {
+                System.out.println("hot drinks,iced drinks");
                 userInput = ab.nextLine();
                 if (userInput.equals("hot drinks")) {
-                    System.out.println("please add the name");
+                    System.out.println("please add the name of drink");
                     String UserInputName = ab.nextLine();
                     System.out.println("please add description");
                     String UserInputDescription = ab.nextLine();
-                    System.out.println("please add id");
+                    System.out.println("please add your id");
                     int UserInputId = Integer.parseInt(ab.nextLine());
                     HotDrinks hotDrinks = new HotDrinks(UserInputId, UserInputName, UserInputDescription);
                     hotService.addHotCoffee(hotDrinks);
                 } else if (userInput.equals("iced coffees")) {
-                    System.out.println("please add the name of coffee");
+                    System.out.println("please add the name of drink");
                     String UserInputName = ab.nextLine();
                     System.out.println("please add about");
                     String UserInputDescription = ab.nextLine();
-                    System.out.println("please add id");
+                    System.out.println("please add your id");
                     int UserInputId = Integer.parseInt(ab.nextLine());
                     IcedDrinks icedDrinks = new IcedDrinks(UserInputId, UserInputName, UserInputDescription);
                     icedService.addIcedDrinks(icedDrinks);
