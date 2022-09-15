@@ -9,15 +9,9 @@ import Service.MakeOrderService;
 import Service.HotService;
 import Service.IcedService;
 import Util.ConnectionUtil;
-
-
-
-
-
 public class Main {
     public static void main(String[] args) throws SQLException {
-//         Logger logger = Logger.getLogger(MainMenu.class.getName());
-//          logger.info("Info Text");
+//
 
         Connection connection = ConnectionUtil.getConnection();
         boolean HaveDrink = true;
