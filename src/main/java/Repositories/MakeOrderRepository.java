@@ -28,7 +28,7 @@ public class MakeOrderRepository {
         return allMakeOrder;
     }
 
-    public MakeOrder getMakeOrderById(int Customer_Id) {
+    public MakeOrder MakeOrderById(int Customer_Id) {
         MakeOrder loadedMakeOrder = null;
         try{
             PreparedStatement statement = conn.prepareStatement("Select * from MakeOrder where Customer_Id = ?");

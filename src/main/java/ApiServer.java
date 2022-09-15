@@ -29,6 +29,7 @@ public class ApiServer {
             ctx.json(is.getAllIcedDrinks());
         });
 
+
 //        ObjectMapper mapper = new ObjectMapper();
 //       HotDrinks requestHotDrinks  = mapper.readValue(ctx.body(), HotDrinks.class);
 //       hs.addHotDrinks(requestHotDrinks.getDescription(), requestHotDrinks.getHotDrinksByID());
