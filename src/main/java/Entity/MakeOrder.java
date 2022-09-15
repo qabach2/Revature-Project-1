@@ -1,11 +1,11 @@
 package Entity;
 
-public class AddOrder {
+public class MakeOrder {
     public int Customer_Id;
     public String Customer_Name;
     public String Drink_Name;
 
-    public AddOrder(int customerId, String customerName, String drinkName) {
+    public MakeOrder(int customerId, String customerName, String drinkName) {
         this.Customer_Id = customerId;
        this.Customer_Name = customerName;
        this.Drink_Name = drinkName;
