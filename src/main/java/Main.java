@@ -23,6 +23,7 @@ public class Main {
         boolean HaveDrink = true;
         HotService hotService = new HotService();
         IcedService icedService = new IcedService();
+        MakeOrderService makeOrderService =new MakeOrderService();
         while (HaveDrink) {
 
             System.out.println("SELECT ONE: (administration ||  user)");
@@ -136,14 +137,14 @@ public class Main {
 //  ================================ TO MAKE ORDER================================================
                 else if (userInput.equals("make order")) {
                     if (userInput.equals("make order")) {
-                        System.out.println("please add your  number");
+                        System.out.println("please add your name");
                         String UserInputName = ab.nextLine();
                         System.out.println("please add name of drink");
                         String UserInputDescription = ab.nextLine();
                         System.out.println("please add id");
                         int UserInputId = Integer.parseInt(ab.nextLine());
-                        MakeOrder makeOrder = new MakeOrder(UserInputId, UserInputName, UserInputDescription);
-                        makeOrderService.addmakeOrder(makeOrder);
+                        MakeOrder MakeOrder = new MakeOrder(UserInputId, UserInputName, UserInputDescription);
+                       makeOrderService.addMakeOrder(MakeOrder);
                     }
                     }
                 }
