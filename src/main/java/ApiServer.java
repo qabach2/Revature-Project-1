@@ -1,8 +1,10 @@
 import Entity.HotDrinks;
+import Entity.MakeOrder;
 import Repositories.HotRepository;
 import Repositories.IcedRepository;
 import Service.HotService;
 import Service.IcedService;
+import Service.MakeOrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import io.javalin.core.JavalinConfig;
@@ -15,8 +17,9 @@ public class ApiServer {
     public static void main(String[] args) throws SQLException {
         HotService hs = new HotService();
         IcedService is = new IcedService();
-
+        MakeOrderService mos = new MakeOrderService();
         Javalin app = Javalin.create(JavalinConfig::enableCorsForAllOrigins).start(9000);
+
 
         app.get("/allHotDrinks/", ctx -> {
             ctx.json(hs.getAllHotDrinks());
@@ -25,15 +28,46 @@ public class ApiServer {
         app.get("/allIcedDrinks/", ctx -> {
             ctx.json(is.getAllIcedDrinks());
         });
-        app.get("/allIcedDrinks/", ctx -> {
-            ctx.json(is.getAllIcedDrinks());
+        app.get("/allMakeOrder/", ctx -> {
+            ctx.json(mos.getAllMakeOrder());
+        });
+        app.get("MakeOrder{id}", ctx->
+        {ctx.json(mos.getMakeOrderById(Integer.parseInt(ctx.pathParam("id"))));});
+
+        app.get("MakeOrder/Customer_Id/{id}", ctx-> {
+            ctx.json(mos.getMakeOrderById(Integer.parseInt(ctx.pathParam("id")))) ;
         });
 
 
-//        ObjectMapper mapper = new ObjectMapper();
-//       HotDrinks requestHotDrinks  = mapper.readValue(ctx.body(), HotDrinks.class);
-//       hs.addHotDrinks(requestHotDrinks.getDescription(), requestHotDrinks.getHotDrinksByID());
+        app.get("/MakeOrder/Customer_Name/{name}",ctx -> {
+            ctx.json(mos.getMakeOrderByName(ctx.pathParam("name")));});
+
+
+
+        app.post("MakeOrder", ctx ->{
+            ObjectMapper mapper = new ObjectMapper();
+            MakeOrder requestMakeOrder = mapper.readValue(ctx.body(), MakeOrder.class);
+            mos.addMakeOrder(requestMakeOrder.getCustomer_Id(), requestMakeOrder.getCustomer_Name(), requestMakeOrder.getDrink_Name());
+        });
+
+
+//        app.delete("MakeOrder/Customer_Id/{id}", ctx-> {
+//            ctx.json(mos.removeMakeOrderById(Integer.parseInt(ctx.pathParam("id"))));});
+//
+//        app.delete("/MakeOrder/Customer_Name/{name}",ctx -> {
+//            ctx.json(mos.removeMakeOrderByName(ctx.pathParam("name")));});
+//
+//        app.put("MakeOrder/Customer_Id/{id}", ctx-> {
+//            ctx.json(mos.updateMakeOrderById(Integer.parseInt(ctx.pathParam("id"))));});
+
+
+
+
+//
+
     }}
+//
+//
 
 
 

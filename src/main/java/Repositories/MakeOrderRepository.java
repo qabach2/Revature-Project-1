@@ -28,7 +28,7 @@ public class MakeOrderRepository {
         return allMakeOrder;
     }
 
-    public MakeOrder MakeOrderById(int Customer_Id) {
+    public MakeOrder getMakeOrderById(int Customer_Id) {
         MakeOrder loadedMakeOrder = null;
         try{
             PreparedStatement statement = conn.prepareStatement("Select * from MakeOrder where Customer_Id = ?");
@@ -43,10 +43,33 @@ public class MakeOrderRepository {
         return loadedMakeOrder;
     }
 
+    public MakeOrder getMakeOrderByName(String Customer_Name) {
+        MakeOrder loadedMakeOrder = null;
+        try{
+            PreparedStatement statement = conn.prepareStatement("Select * from MakeOrder where Customer_Name= ?");
+            statement.setString(1, Customer_Name);
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            loadedMakeOrder = new MakeOrder((rs.getInt("Customer_Id")),(rs.getString("Customer_Name")),(rs.getString("Drink_Name")));
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+        return loadedMakeOrder;
+    }
+
     public void removeMakeOrderById(int Customer_Id ){
         try{
             PreparedStatement statement = conn.prepareStatement("Delete from MakeOrder where Customer_Id = ?");
             statement.setInt(1, Customer_Id);
+            ResultSet rs = statement.executeQuery();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }}
+    public void removeMakeOrderByName(String Customer_Name ){
+        try{
+            PreparedStatement statement = conn.prepareStatement("Delete from MakeOrder where Customer_Name = ?");
+            statement.setString(1, Customer_Name);
             ResultSet rs = statement.executeQuery();
         }catch(SQLException e){
             e.printStackTrace();
