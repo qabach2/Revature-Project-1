@@ -1,6 +1,5 @@
 package Service;
 
-import Entity.IcedDrinks;
 import Entity.MakeOrder;
 
 
@@ -43,17 +42,30 @@ public class MakeOrderService {
         return mor.getMakeOrderById(Customer_Id);
     }
     public MakeOrder getMakeOrderByName(String Customer_Name){
+
         return mor.getMakeOrderByName(Customer_Name);
     }
 
     public void removeMakeOrderById(int Customer_Id ){
         mor.removeMakeOrderById(Customer_Id);
+
     }
     public void removeMakeOrderByName(String Customer_Name ){
         mor.removeMakeOrderByName(Customer_Name);
+
     }
-    public MakeOrder updateMakeOrderById(MakeOrder makeOrder){
-        return mor.updateMakeOrderById(makeOrder);}
+//    public void updateMakeOrderById(int Customer_Id, String Customer_Name, String Drink_Name) throws SQLException{
+//        MakeOrder existingMakeOrder = mor.updateMakeOrderById(Customer_Id);
+//        if(existingMakeOrder == null) {
+//            MakeOrder newMakeOrder = new MakeOrder(Customer_Id, Customer_Name, Drink_Name);
+//            mor.updateMakeOrderById(newMakeOrder.getCustomer_Id());
+//        }else{
+//
+//        }
+//        conn.commit();
+//
+//        mor.updateMakeOrderById(Customer_Id);
+//    }
 
     public void addMakeOrder(int Customer_Id, String Customer_Name, String Drink_Name) throws SQLException {
         MakeOrder existingMakeOrder = mor.getMakeOrderById(Customer_Id);

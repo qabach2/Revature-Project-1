@@ -1,6 +1,5 @@
 package Repositories;
 
-import Entity.HotDrinks;
 import Entity.MakeOrder;
 import Util.ConnectionUtil;
 
@@ -62,7 +61,7 @@ public class MakeOrderRepository {
         try{
             PreparedStatement statement = conn.prepareStatement("Delete from MakeOrder where Customer_Id = ?");
             statement.setInt(1, Customer_Id);
-            ResultSet rs = statement.executeQuery();
+            statement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
         }}
@@ -70,7 +69,7 @@ public class MakeOrderRepository {
         try{
             PreparedStatement statement = conn.prepareStatement("Delete from MakeOrder where Customer_Name = ?");
             statement.setString(1, Customer_Name);
-            ResultSet rs = statement.executeQuery();
+             statement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
         }}
@@ -87,20 +86,20 @@ public class MakeOrderRepository {
         }catch(SQLException e){
             e.printStackTrace();
         }
-    }
-
-    public MakeOrder updateMakeOrderById(MakeOrder makeOrder){
-        MakeOrder returnval  = null;
-        try{
-            PreparedStatement statement = conn.prepareStatement("Update  set Customer_name= ?,Drink_Name= ? where Customer_Id = ?");
-            statement.setString(1, makeOrder.getCustomer_Name());
-            statement.setString(2, makeOrder.getDrink_Name());
-            statement.setInt(3, makeOrder.getCustomer_Id());
-            statement.executeUpdate();
-
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return returnval;
     }}
+
+//    public MakeOrder updateMakeOrderById(int makeOrder){
+//        MakeOrder returnval  = null;
+//        try{
+//            PreparedStatement statement = conn.prepareStatement("Update  set Customer_name= ?,Drink_Name= ? where Customer_Id = ?");
+//            statement.setString(1, makeOrder.getCustomer_Name());
+//            statement.setString(2, makeOrder.getDrink_Name());
+//            statement.setInt(3, makeOrder.getCustomer_Id());
+//            statement.executeUpdate();
+//
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//        return returnval;
+//    }}
 
